@@ -1,10 +1,13 @@
 package com.he.matt.wheresaldo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.he.matt.wheresaldo.ui.GameOneActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,14 +27,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void modeOneLaunch(View button) {
-        uiTextView.setText("ça fonctionne");
+        Intent launchModeOne = new Intent(this, GameOneActivity.class);
+        startActivity(launchModeOne);
     };
 
     public void modeTwoLaunch(View button) {
-
+        Intent launchModeTwo = new Intent(this, GameOneActivity.class);
+        startActivity(launchModeTwo);
     };
 
     public void hallOfFameLaunch(View button) {
-
+        Intent launchHallOfFame = new Intent(this, GameOneActivity.class);
+        startActivity(launchHallOfFame);
     };
 }
