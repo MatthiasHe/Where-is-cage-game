@@ -14,6 +14,7 @@ import com.he.matt.wheresaldo.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import at.lukle.clickableareasimage.ClickableArea;
 import at.lukle.clickableareasimage.ClickableAreasImage;
@@ -28,14 +29,12 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_one);
 
         countDown = (TextView) findViewById(R.id.countDown);
-        image = (ImageView) findViewById(R.id.photoView);
-        image.setImageResource(R.drawable.cage2);
-
-        initializeClickableArea(image);
+        image = setImage();
 
         new CountDownTimer(30000, 1000) {
 
@@ -58,11 +57,11 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
         }
     }
 
-    private void initializeClickableArea(ImageView image){
+    private void initializeClickableArea(ImageView image, int randomNumber){
 
         ClickableAreasImage clickableAreasImage = new ClickableAreasImage(new PhotoViewAttacher(image), this);
 
-        if ("c" == "cage1") {
+        if (randomNumber == 1) {
             clickableAreas.add(new ClickableArea(625, 660, 150, 150, new Area("Cage 1")));
         }
         else {
@@ -70,5 +69,24 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
         }
 
         clickableAreasImage.setClickableAreas(clickableAreas);
+    }
+
+    private ImageView setImage(){
+        ImageView image;
+        Random randomGenerator = new Random();
+
+        image = (ImageView) findViewById(R.id.photoView);
+        int randomNumber = randomGenerator.nextInt(2);
+
+        if (randomNumber == 1) {
+            image.setImageResource(R.drawable.cage1);
+            initializeClickableArea(image, randomNumber);
+        }
+        else {
+            image.setImageResource(R.drawable.cage1);
+            initializeClickableArea(image, randomNumber);
+        }
+
+        return image;
     }
 }
