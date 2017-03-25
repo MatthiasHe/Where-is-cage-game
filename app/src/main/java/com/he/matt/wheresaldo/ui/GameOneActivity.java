@@ -1,15 +1,15 @@
 package com.he.matt.wheresaldo.ui;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.he.matt.wheresaldo.Area;
+import com.he.matt.wheresaldo.ChronoArea;
 import com.he.matt.wheresaldo.R;
 
 import java.util.ArrayList;
@@ -23,8 +23,9 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class GameOneActivity extends AppCompatActivity implements OnClickableAreaClickedListener {
 
-    private TextView countDown;
+    private TextView chronometer;
     private ImageView image;
+    private int timer = 0;
     List<ClickableArea> clickableAreas = new ArrayList<>();
 
     @Override
@@ -33,27 +34,30 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_one);
 
-        countDown = (TextView) findViewById(R.id.countDown);
+        chronometer = (TextView) findViewById(R.id.chronometer);
         image = setImage();
 
-        new CountDownTimer(30000, 1000) {
+        chronometer.setText("Seconds remaining : 0");
+
+        new CountDownTimer(999999999, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                countDown.setText("seconds remaining: " + millisUntilFinished / 1000);
+                timer = timer + 1;
+                chronometer.setText("seconds remaining: " + timer);
             }
 
-            public void onFinish() {
-                countDown.setText("done!");
-            }
+            public void onFinish() {}
         }.start();
     }
 
     @Override
     public void onClickableAreaTouched(Object item) {
-        if (item instanceof Area) {
-            String text = ((Area) item).getName();
+        if (item instanceof Area ) {
             Intent endGame = new Intent(this, EndGame.class);
             startActivity(endGame);
+        }
+        if (item instanceof ChronoArea) {
+            timer = timer + 2;
         }
     }
 
@@ -62,11 +66,13 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
         ClickableAreasImage clickableAreasImage = new ClickableAreasImage(new PhotoViewAttacher(image), this);
 
         if (randomNumber == 1) {
-            clickableAreas.add(new ClickableArea(625, 660, 150, 150, new Area("Cage 1")));
+            clickableAreas.add(new ClickableArea(625, 660, 200, 200, new Area("Cage 1")));
         }
         else {
-            clickableAreas.add(new ClickableArea(577, 175, 150, 150, new Area("Cage 2")));
+            clickableAreas.add(new ClickableArea(577, 175, 200, 200, new Area("Cage 2")));
         }
+
+        clickableAreas.add(new ClickableArea(1, 1, 1200, 1200, new ChronoArea("ChronoArea")));
 
         clickableAreasImage.setClickableAreas(clickableAreas);
     }
@@ -83,7 +89,7 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
             initializeClickableArea(image, randomNumber);
         }
         else {
-            image.setImageResource(R.drawable.cage1);
+            image.setImageResource(R.drawable.cage2);
             initializeClickableArea(image, randomNumber);
         }
 
