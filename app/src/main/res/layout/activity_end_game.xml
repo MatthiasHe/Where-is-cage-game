@@ -14,9 +14,8 @@
         tools:layout_editor_absoluteX="8dp">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/score"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="GAGNÉ" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
