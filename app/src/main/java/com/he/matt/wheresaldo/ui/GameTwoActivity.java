@@ -47,7 +47,7 @@ public class GameTwoActivity extends AppCompatActivity implements OnClickableAre
     @Override
     public void onClickableAreaTouched(Object item) {
         if (blockTouch == false) {
-            if (initialTimer == 20) {
+            if (initialTimer < 20) {
                 Intent endGame = new Intent(this, EndGame.class);
                 endGame.putExtra("Chronomod", "Vous avez gagné en atteignant le dernier pallier !");
                 startActivity(endGame);
