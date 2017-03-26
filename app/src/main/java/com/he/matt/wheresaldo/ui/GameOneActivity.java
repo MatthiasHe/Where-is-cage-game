@@ -39,7 +39,7 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
 
         InitiateChronometer();
 
-        chronometer.setText("Seconds remaining : 0");
+        chronometer.setText("Chronomoter : 0");
     }
 
     @Override

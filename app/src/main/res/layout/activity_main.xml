@@ -19,21 +19,30 @@
             android:layout_width="match_parent"
             android:layout_height="118dp"
             android:onClick="modeOneLaunch"
-            android:text="@string/mode_one"
+            android:text="@string/classic"
             tools:layout_editor_absoluteX="91dp"
             tools:layout_editor_absoluteY="16dp" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
-            android:layout_height="117dp"
+            android:layout_height="118dp"
             android:onClick="modeTwoLaunch"
+            android:text="@string/mode_one"
+            tools:layout_editor_absoluteX="91dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="117dp"
+            android:onClick="modeThreeLaunch"
             android:text="@string/mode_two"
             tools:layout_editor_absoluteX="91dp"
             tools:layout_editor_absoluteY="197dp" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="117dp"
             android:onClick="hallOfFameLaunch"

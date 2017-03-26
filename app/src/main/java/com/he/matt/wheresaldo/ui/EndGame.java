@@ -20,15 +20,6 @@ public class EndGame extends AppCompatActivity {
         score = extras.getInt("Score");
 
         scoreView = (TextView) findViewById(R.id.score);
-        scoreView.setText(String.valueOf(score));
-
-
-/*        Bundle data = getIntent().getExtras();
-        if (data != null) {
-            score = data.getInt("Score");
-
-            scoreView = (TextView) findViewById(R.id.score);
-            scoreView.setText(score);
-        }*/
+        scoreView.setText("You score : " + String.valueOf(score));
     }
 }
