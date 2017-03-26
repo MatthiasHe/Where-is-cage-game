@@ -42,22 +42,25 @@ public class GameTwoActivity extends AppCompatActivity implements OnClickableAre
         InitiateChronometer();
     }
 
+    // METHODE QUI PERMET DE DEFINIR LE COMPORTEMENT LORSQUE L'ON CLIQUE SUR UNE ZONE PRÉDÉFINIE
     @Override
     public void onClickableAreaTouched(Object item) {
         if (initialTimer == 20) {
             Intent endGame = new Intent(this, EndGame.class);
-            endGame.putExtra("Chronomod", "Vous avez gagné !");
+            endGame.putExtra("Chronomod", "Vous avez gagné en atteignant le dernier pallier !");
             startActivity(endGame);
-        }
-        if (item instanceof Area) {
+        } else if (item instanceof Area) {
             clickableAreas = new ArrayList<>();
             setImage(nextImage);
             initialTimer = initialTimer - 20;
             Log.d("Timer", "InitialTimer : " + Float.toString(initialTimer));
             timer = initialTimer;
+        } else if (item instanceof ChronoArea) {
+            timer = timer - 2;
         }
     }
 
+    // METHODE QUI PERMET D'INITIALISER LES ZONES CLIQUABLES
     private void initializeClickableArea(ImageView image, int randomNumber){
 
         ClickableAreasImage clickableAreasImage = new ClickableAreasImage(new PhotoViewAttacher(image), this);
@@ -69,9 +72,12 @@ public class GameTwoActivity extends AppCompatActivity implements OnClickableAre
             clickableAreas.add(new ClickableArea(500, 100, 150, 150, new Area("Cage 2")));
         }
 
+        clickableAreas.add(new ClickableArea(1, 1, 1600, 1600, new ChronoArea("ChronoArea")));
+
         clickableAreasImage.setClickableAreas(clickableAreas);
     }
 
+    // METHODE QUI INITIALISE SIMPLEMENT NOTRE CHRONOMETRE
     private void InitiateChronometer() {
         new CountDownTimer(999999999, 1000) {
 
@@ -84,6 +90,7 @@ public class GameTwoActivity extends AppCompatActivity implements OnClickableAre
         }.start();
     }
 
+    // METHODE QUI DEFINIT LA PROCHAINE IMAGE ALEATOIREMENT
     private void setImage(int imageNumber) {
 
         Random randomGenerator = new Random();
@@ -96,7 +103,6 @@ public class GameTwoActivity extends AppCompatActivity implements OnClickableAre
             image.setImageResource(R.drawable.cage2);
             initializeClickableArea(image, imageNumber);
         }
-
         nextImage = randomGenerator.nextInt(2);
     }
 }

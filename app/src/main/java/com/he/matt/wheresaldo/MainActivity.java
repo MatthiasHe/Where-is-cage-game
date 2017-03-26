@@ -19,23 +19,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    // LANCE LE MODE CLASSIQUE
     public void modeOneLaunch(View button) {
         Intent launchModeOne = new Intent(this, GameOneActivity.class);
         startActivity(launchModeOne);
-    };
+    }
 
+    // LANCE LE MODE CHRONOMOD
     public void modeTwoLaunch(View button) {
         Intent launchModeTwo = new Intent(this, GameTwoActivity.class);
         startActivity(launchModeTwo);
-    };
+    }
 
+    // LANCE LE MODE CHRONOMOD 2
     public void modeThreeLaunch(View button) {
         Intent launchModeThree = new Intent(this, GameThreeActivity.class);
         startActivity(launchModeThree);
-    };
+    }
 
+    // PERMET D'ACCEDER AU CLASSEMENT
     public void hallOfFameLaunch(View button) {
         Intent launchHallOfFame = new Intent(this, GameOneActivity.class);
         startActivity(launchHallOfFame);
-    };
+    }
 }

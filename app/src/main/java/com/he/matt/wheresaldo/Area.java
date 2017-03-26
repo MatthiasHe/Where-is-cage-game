@@ -4,6 +4,8 @@ package com.he.matt.wheresaldo;
  * Created by matt on 20/03/2017.
  */
 
+// CLASSE PERMETTANT D'AVOIR DES OBJETS POUR LES ZONES CLIQUABLES
+
 public class Area {
     private String name;
 

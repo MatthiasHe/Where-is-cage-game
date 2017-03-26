@@ -42,6 +42,7 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
         chronometer.setText("Chronomoter : 0");
     }
 
+    // METHODE QUI PERMET DE DEFINIR LE COMPORTEMENT LORSQUE L'ON CLIQUE SUR UNE ZONE PRÉDÉFINIE
     @Override
     public void onClickableAreaTouched(Object item) {
         if (item instanceof Area ) {
@@ -49,12 +50,12 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
             Intent endGame = new Intent(this, EndGame.class);
             endGame.putExtra("Score", finalTimer);
             startActivity(endGame);
-        }
-        if (item instanceof ChronoArea) {
+        } else if (item instanceof ChronoArea) {
             timer = timer + 2;
         }
     }
 
+    // METHODE QUI PERMET D'INITIALISER LES ZONES CLIQUABLES
     private void initializeClickableArea(ImageView image, int randomNumber){
 
         ClickableAreasImage clickableAreasImage = new ClickableAreasImage(new PhotoViewAttacher(image), this);
@@ -71,6 +72,7 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
         clickableAreasImage.setClickableAreas(clickableAreas);
     }
 
+    // METHODE QUI DEFINIT UNE IMAGE ALEATOIREMENT
     private ImageView setImage(){
         ImageView image;
         Random randomGenerator = new Random();
@@ -90,6 +92,7 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
         return image;
     }
 
+    // METHODE QUI INITIALISE SIMPLEMENT NOTRE CHRONOMETRE
     private void InitiateChronometer() {
         new CountDownTimer(999999999, 1000) {
 

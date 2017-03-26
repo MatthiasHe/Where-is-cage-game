@@ -23,6 +23,7 @@ public class EndGame extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
 
+        // GESTION DES DIFFERENTS CAS DE VICTOIRE
         if (extras.getInt("Score") != 0) {
             score = extras.getInt("Score");
 
@@ -41,8 +42,9 @@ public class EndGame extends AppCompatActivity {
         }
     }
 
+    // SIMPLE METHODE POUR REVENIR AU MENU PRINCIPAL
     public void backToMenu(View button) {
         Intent backToMenu = new Intent(this, MainActivity.class);
         startActivity(backToMenu);
-    };
+    }
 }
