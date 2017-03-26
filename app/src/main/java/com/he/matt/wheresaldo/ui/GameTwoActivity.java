@@ -44,6 +44,11 @@ public class GameTwoActivity extends AppCompatActivity implements OnClickableAre
 
     @Override
     public void onClickableAreaTouched(Object item) {
+        if (initialTimer == 20) {
+            Intent endGame = new Intent(this, EndGame.class);
+            endGame.putExtra("Chronomod", "Vous avez gagné !");
+            startActivity(endGame);
+        }
         if (item instanceof Area) {
             clickableAreas = new ArrayList<>();
             setImage(nextImage);

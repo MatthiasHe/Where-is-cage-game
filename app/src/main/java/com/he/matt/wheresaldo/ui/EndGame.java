@@ -9,6 +9,7 @@ import com.he.matt.wheresaldo.R;
 public class EndGame extends AppCompatActivity {
 
     private int score;
+    private String winText;
     private TextView scoreView;
 
     @Override
@@ -17,9 +18,21 @@ public class EndGame extends AppCompatActivity {
         setContentView(R.layout.activity_end_game);
 
         Bundle extras = getIntent().getExtras();
-        score = extras.getInt("Score");
 
-        scoreView = (TextView) findViewById(R.id.score);
-        scoreView.setText("You score : " + String.valueOf(score));
+        if (extras.getInt("Score") != 0) {
+            score = extras.getInt("Score");
+
+            scoreView = (TextView) findViewById(R.id.score);
+            scoreView.setText("You score : " + String.valueOf(score));
+        }
+
+        if (extras.getString("Chronomod") != null) {
+            winText = extras.getString("Chronomod");
+
+            scoreView = (TextView) findViewById(R.id.score);
+            scoreView.setText(winText);
+        }
+
+
     }
 }
