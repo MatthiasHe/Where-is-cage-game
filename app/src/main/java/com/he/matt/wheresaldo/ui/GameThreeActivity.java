@@ -26,7 +26,7 @@ public class GameThreeActivity extends AppCompatActivity implements OnClickableA
     private ImageView image;
     private boolean blockTouch = false;
     private int nextImage = 1;
-    private int timer = 10;
+    private int timer = 300;
     private int cageFound = 0;
     List<ClickableArea> clickableAreas = new ArrayList<>();
 
