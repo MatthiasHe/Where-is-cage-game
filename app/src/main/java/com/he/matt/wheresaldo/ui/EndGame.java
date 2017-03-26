@@ -1,9 +1,12 @@
 package com.he.matt.wheresaldo.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
+import com.he.matt.wheresaldo.MainActivity;
 import com.he.matt.wheresaldo.R;
 
 public class EndGame extends AppCompatActivity {
@@ -36,9 +39,10 @@ public class EndGame extends AppCompatActivity {
             scoreView = (TextView) findViewById(R.id.score);
             scoreView.setText("Vous avez trouvé : " + String.valueOf(cageFound) + " Nicolas Cage ! Bravo !");
         }
-
-
-
-
     }
+
+    public void backToMenu(View button) {
+        Intent backToMenu = new Intent(this, MainActivity.class);
+        startActivity(backToMenu);
+    };
 }

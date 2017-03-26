@@ -13,19 +13,10 @@ import com.he.matt.wheresaldo.ui.GameTwoActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button uiButtonOne;
-    private Button uiButtonTwo;
-    private Button uiHallOfFame;
-    private TextView uiTextView;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        uiButtonOne = (Button)findViewById(R.id.button1);
-        uiTextView = (TextView)findViewById(R.id.textView);
     }
 
     public void modeOneLaunch(View button) {
