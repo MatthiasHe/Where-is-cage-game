@@ -24,6 +24,7 @@ public class GameThreeActivity extends AppCompatActivity implements OnClickableA
 
     private TextView chronometer;
     private ImageView image;
+    private boolean blockTouch = false;
     private int nextImage = 1;
     private int timer = 10;
     private int cageFound = 0;
@@ -44,12 +45,14 @@ public class GameThreeActivity extends AppCompatActivity implements OnClickableA
     // METHODE QUI PERMET DE DEFINIR LE COMPORTEMENT LORSQUE L'ON CLIQUE SUR UNE ZONE PRÉDÉFINIE
     @Override
     public void onClickableAreaTouched(Object item) {
-        if (item instanceof Area) {
-            clickableAreas = new ArrayList<>();
-            setImage(nextImage);
-            cageFound++;
-        } else if (item instanceof ChronoArea) {
-            timer = timer - 2;
+        if (blockTouch == false) {
+            if (item instanceof Area) {
+                clickableAreas = new ArrayList<>();
+                setImage(nextImage);
+                cageFound++;
+            } else if (item instanceof ChronoArea) {
+                BlockScreen();
+            }
         }
     }
 
@@ -104,5 +107,20 @@ public class GameThreeActivity extends AppCompatActivity implements OnClickableA
         Intent endGame = new Intent(this, EndGame.class);
         endGame.putExtra("CageFound", cageFound);
         startActivity(endGame);
+    }
+
+    // METHOD QUI GERE LE BLOQUAGE DE L'ECRAN EN CAS DE MAUVAIS TOUCH
+    private void BlockScreen() {
+
+        blockTouch = true;
+
+        new CountDownTimer(2000, 1000) {
+
+            public void onTick(long millisUntilFinished) {}
+
+            public void onFinish() {
+                blockTouch = false;
+            }
+        }.start();
     }
 }

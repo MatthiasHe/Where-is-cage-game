@@ -25,6 +25,9 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
     private TextView chronometer;
     private ImageView image;
     private int finalTimer;
+    private ClickableAreasImage clickableAreasImage;
+    private int randomNumber;
+    private boolean blockTouch = false;
     private int timer = 0;
     List<ClickableArea> clickableAreas = new ArrayList<>();
 
@@ -45,20 +48,22 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
     // METHODE QUI PERMET DE DEFINIR LE COMPORTEMENT LORSQUE L'ON CLIQUE SUR UNE ZONE PRÉDÉFINIE
     @Override
     public void onClickableAreaTouched(Object item) {
-        if (item instanceof Area) {
-            finalTimer = timer;
-            Intent endGame = new Intent(this, EndGame.class);
-            endGame.putExtra("Score", finalTimer);
-            startActivity(endGame);
-        } else if (item instanceof ChronoArea) {
-            timer = timer + 2;
+        if (blockTouch == false) {
+            if (item instanceof Area) {
+                finalTimer = timer;
+                Intent endGame = new Intent(this, EndGame.class);
+                endGame.putExtra("Score", finalTimer);
+                startActivity(endGame);
+            } else if (item instanceof ChronoArea) {
+                BlockScreen();
+            }
         }
     }
 
     // METHODE QUI PERMET D'INITIALISER LES ZONES CLIQUABLES
     private void initializeClickableArea(ImageView image, int randomNumber) {
 
-        ClickableAreasImage clickableAreasImage = new ClickableAreasImage(new PhotoViewAttacher(image), this);
+        clickableAreasImage = new ClickableAreasImage(new PhotoViewAttacher(image), this);
 
         if (randomNumber == 1) {
             clickableAreas.add(new ClickableArea(550, 585, 150, 150, new Area("Cage 1")));
@@ -77,7 +82,7 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
         Random randomGenerator = new Random();
 
         image = (ImageView) findViewById(R.id.photoView);
-        int randomNumber = randomGenerator.nextInt(2);
+        randomNumber = randomGenerator.nextInt(2);
 
         if (randomNumber == 1) {
             image.setImageResource(R.drawable.cage1);
@@ -100,6 +105,22 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
             }
 
             public void onFinish() {
+                initializeClickableArea(image, randomNumber);
+            }
+        }.start();
+    }
+
+    // METHOD QUI GERE LE BLOQUAGE DE L'ECRAN EN CAS DE MAUVAIS TOUCH
+    private void BlockScreen() {
+
+        blockTouch = true;
+
+        new CountDownTimer(2000, 1000) {
+
+            public void onTick(long millisUntilFinished) {}
+
+            public void onFinish() {
+                blockTouch = false;
             }
         }.start();
     }
