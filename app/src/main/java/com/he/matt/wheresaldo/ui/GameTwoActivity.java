@@ -1,9 +1,9 @@
 package com.he.matt.wheresaldo.ui;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -61,14 +61,13 @@ public class GameTwoActivity extends AppCompatActivity implements OnClickableAre
     }
 
     // METHODE QUI PERMET D'INITIALISER LES ZONES CLIQUABLES
-    private void initializeClickableArea(ImageView image, int randomNumber){
+    private void initializeClickableArea(ImageView image, int randomNumber) {
 
         ClickableAreasImage clickableAreasImage = new ClickableAreasImage(new PhotoViewAttacher(image), this);
 
         if (randomNumber == 1) {
             clickableAreas.add(new ClickableArea(550, 585, 150, 150, new Area("Cage 1")));
-        }
-        else {
+        } else {
             clickableAreas.add(new ClickableArea(500, 100, 150, 150, new Area("Cage 2")));
         }
 
@@ -86,7 +85,8 @@ public class GameTwoActivity extends AppCompatActivity implements OnClickableAre
                 chronometer.setText("Seconds remaining: " + timer);
             }
 
-            public void onFinish() {}
+            public void onFinish() {
+            }
         }.start();
     }
 
@@ -98,8 +98,7 @@ public class GameTwoActivity extends AppCompatActivity implements OnClickableAre
         if (nextImage == 1) {
             image.setImageResource(R.drawable.cage1);
             initializeClickableArea(image, imageNumber);
-        }
-        else {
+        } else {
             image.setImageResource(R.drawable.cage2);
             initializeClickableArea(image, imageNumber);
         }

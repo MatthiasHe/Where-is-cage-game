@@ -1,9 +1,9 @@
 package com.he.matt.wheresaldo.ui;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,7 +45,7 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
     // METHODE QUI PERMET DE DEFINIR LE COMPORTEMENT LORSQUE L'ON CLIQUE SUR UNE ZONE PRÉDÉFINIE
     @Override
     public void onClickableAreaTouched(Object item) {
-        if (item instanceof Area ) {
+        if (item instanceof Area) {
             finalTimer = timer;
             Intent endGame = new Intent(this, EndGame.class);
             endGame.putExtra("Score", finalTimer);
@@ -56,14 +56,13 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
     }
 
     // METHODE QUI PERMET D'INITIALISER LES ZONES CLIQUABLES
-    private void initializeClickableArea(ImageView image, int randomNumber){
+    private void initializeClickableArea(ImageView image, int randomNumber) {
 
         ClickableAreasImage clickableAreasImage = new ClickableAreasImage(new PhotoViewAttacher(image), this);
 
         if (randomNumber == 1) {
             clickableAreas.add(new ClickableArea(550, 585, 150, 150, new Area("Cage 1")));
-        }
-        else {
+        } else {
             clickableAreas.add(new ClickableArea(500, 100, 150, 150, new Area("Cage 2")));
         }
 
@@ -73,7 +72,7 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
     }
 
     // METHODE QUI DEFINIT UNE IMAGE ALEATOIREMENT
-    private ImageView setImage(){
+    private ImageView setImage() {
         ImageView image;
         Random randomGenerator = new Random();
 
@@ -83,8 +82,7 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
         if (randomNumber == 1) {
             image.setImageResource(R.drawable.cage1);
             initializeClickableArea(image, randomNumber);
-        }
-        else {
+        } else {
             image.setImageResource(R.drawable.cage2);
             initializeClickableArea(image, randomNumber);
         }
@@ -101,7 +99,8 @@ public class GameOneActivity extends AppCompatActivity implements OnClickableAre
                 chronometer.setText("seconds remaining: " + timer);
             }
 
-            public void onFinish() {}
+            public void onFinish() {
+            }
         }.start();
     }
 }
