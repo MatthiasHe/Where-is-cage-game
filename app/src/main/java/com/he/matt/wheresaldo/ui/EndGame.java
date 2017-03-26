@@ -11,6 +11,7 @@ public class EndGame extends AppCompatActivity {
     private int score;
     private String winText;
     private TextView scoreView;
+    private int cageFound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +25,19 @@ public class EndGame extends AppCompatActivity {
 
             scoreView = (TextView) findViewById(R.id.score);
             scoreView.setText("You score : " + String.valueOf(score));
-        }
-
-        if (extras.getString("Chronomod") != null) {
+        } else if (extras.getString("Chronomod") != null) {
             winText = extras.getString("Chronomod");
 
             scoreView = (TextView) findViewById(R.id.score);
             scoreView.setText(winText);
+        } else if (extras.getInt("CageFound") >= 0) {
+            cageFound = extras.getInt("CageFound");
+
+            scoreView = (TextView) findViewById(R.id.score);
+            scoreView.setText("Vous avez trouvé : " + String.valueOf(cageFound) + " Nicolas Cage ! Bravo !");
         }
+
+
 
 
     }

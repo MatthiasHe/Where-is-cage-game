@@ -19,7 +19,8 @@
         <activity android:name=".ui.GameOneActivity" />
         <activity android:name=".ui.GameTwoActivity" />
         <activity android:name=".ui.HallOfFameActivity" />
-        <activity android:name=".ui.EndGame"></activity>
+        <activity android:name=".ui.EndGame" />
+        <activity android:name=".ui.GameThreeActivity"></activity>
     </application>
 
 </manifest>

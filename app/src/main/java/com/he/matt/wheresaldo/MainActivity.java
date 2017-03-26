@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.he.matt.wheresaldo.ui.GameOneActivity;
+import com.he.matt.wheresaldo.ui.GameThreeActivity;
 import com.he.matt.wheresaldo.ui.GameTwoActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public void modeThreeLaunch(View button) {
-        Intent launchModeTwo = new Intent(this, GameOneActivity.class);
-        startActivity(launchModeTwo);
+        Intent launchModeThree = new Intent(this, GameThreeActivity.class);
+        startActivity(launchModeThree);
     };
 
     public void hallOfFameLaunch(View button) {
